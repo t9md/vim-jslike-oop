@@ -7,4 +7,4 @@ Currently, I am not intending to be useful for real problem.
 
 Semantics is not consistent in several methods.  
 There are several attempt to mimic OOP in VimScript.  
-One of the biggest example are [tlib](http://github.com/tomtom/tlib_vim).  
+One of the biggest example is [tlib](http://github.com/tomtom/tlib_vim).  
