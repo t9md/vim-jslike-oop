@@ -6,5 +6,5 @@ It's just experiment.
 Currently, I am not intending to be useful for real problem.  
 
 Semantics is not consistent in several methods.  
-There is several attempt to mimic OOP in VimScript.  
-One of the biggest example are [tlib](http://www.vim.org/sources.php).  
+There are several attempt to mimic OOP in VimScript.  
+One of the biggest example are [tlib](http://github.com/tomtom/tlib_vim).  
