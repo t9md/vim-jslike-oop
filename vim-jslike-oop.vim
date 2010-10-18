@@ -43,13 +43,7 @@ endfun
 "============================================================
 let Class = {}
 fun! Class.new(...)
-  " Forth argment should be prototype Object, if not set, emtpy object is used
-  " as prototype
-  let args = copy(a:000)
-  if len(args) == 3
-    call add(args, { 'name': "BasicObject", '_c_methods': {}, '_i_methods': {} })
-  endif
-  let [class, class_methods, instance_methods, prototype ] = args
+  let [class, class_methods, instance_methods, prototype ] = a:000
   " 'c" stand for [C]lass
   let c = {}
   let c.name = class
@@ -63,6 +57,15 @@ fun! Class.new(...)
   let g:{class} = c
 endfun
 
+"}}}
+"============================================================
+" BasicObject: {{{
+"============================================================
+let BasicObject = {
+            \ 'name': "BasicObject",
+            \ '_c_methods': {},
+            \ '_i_methods': {}
+            \ }
 "}}}
 "============================================================
 " Object: {{{
@@ -268,22 +271,26 @@ call string.init()
 " Setup: {{{
 "============================================================
 " Root Object
-" let [cm, im] = object.init()
-call Class.new("Object", object.cm, object.im)
+"
+" Object < BasicObject
+call Class.new("Object", object.cm, object.im, BasicObject)
 
-" Enumerable < Object
+" Enumerable < Object < BasicObject
 call Class.new("Enumerable", enumerable.cm, enumerable.im, Object)
 
-" List < Enumerable < Object
+" List < Enumerable < Object < BasicObject
 call Class.new("List", list.cm, list.im, Enumerable)
 " alias_method :size, :length
 call List.alias_method("size", "length")
 " alias_method :nagasa, :length
 call List.alias_method("nagasa", "length")
 
-" String < List < Enumerable < Object
+" String < List < Enumerable < Object < BasicObject
 call Class.new("String", string.cm, string.im, List)
-" echo String.ancestors()
+
+TEST "String.ancestors()"
+echo String.ancestors()
+" => ['String', 'List', 'Enumerable', 'Object', 'BasicObject']
 " }}}
 "============================================================
 " Usage: {{{

@@ -1,4 +1,6 @@
 
+==== String.ancestors() =====
+['String', 'List', 'Enumerable', 'Object', 'BasicObject']
 ============================
 List(1)
 ============================
